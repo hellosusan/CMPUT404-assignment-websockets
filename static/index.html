@@ -132,7 +132,6 @@ function addEntity(entity, data) {
     //XXX: Send a XHTML Request that updates the entity you just modified!
     let update = {};
     update[entity] = data
-    console.log(update)
     socket.send(JSON.stringify(update));
 
 }
