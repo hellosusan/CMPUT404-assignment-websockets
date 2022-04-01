@@ -100,7 +100,15 @@ def read_ws(ws,client):
         while True:
             msg = ws.receive()
             if (msg is not None):
-                packet = json.loads(msg)
+                if msg == '{}':
+                    # get the world
+                    packet = myWorld.world()
+                else:
+                    packet = json.loads(msg)
+                    # update the world
+                    for entity in packet:
+                        myWorld.set(entity, packet[entity])
+                # update client
                 send_all_json(packet)
             else:
                 break
